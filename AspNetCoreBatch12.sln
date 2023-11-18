@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectionPractice", "Colle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThrowPractice", "ThrowPractice\ThrowPractice.csproj", "{6296682B-0309-4948-A856-70B8CCE24B02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPDay1", "OOPDay1\OOPDay1.csproj", "{E7CBC1C1-9A1E-40E5-9D21-92E78F51B8EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPDay1", "OOPDay1\OOPDay1.csproj", "{E7CBC1C1-9A1E-40E5-9D21-92E78F51B8EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPDay2", "OOPDay2\OOPDay2.csproj", "{05F2D5A1-838F-48E5-A471-33ACC24CA09C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPDay2", "OOPDay2\OOPDay2.csproj", "{05F2D5A1-838F-48E5-A471-33ACC24CA09C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstMVCDemo", "FirstMVCDemo\FirstMVCDemo.csproj", "{B151F871-D5AC-4408-87D2-0B65D97C3374}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{05F2D5A1-838F-48E5-A471-33ACC24CA09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05F2D5A1-838F-48E5-A471-33ACC24CA09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05F2D5A1-838F-48E5-A471-33ACC24CA09C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B151F871-D5AC-4408-87D2-0B65D97C3374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B151F871-D5AC-4408-87D2-0B65D97C3374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B151F871-D5AC-4408-87D2-0B65D97C3374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B151F871-D5AC-4408-87D2-0B65D97C3374}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
