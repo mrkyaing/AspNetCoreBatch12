@@ -1,0 +1,14 @@
+﻿<h1>
+     This is my me page by applying actionName selector of aspnet core feature.
+</h1>
+<form href="/aboutus/me" method="get">
+    <label>First Name:</label>
+    <input type="text" name="firstName" />
+    <label>First Name:</label>
+    <input type="text" name="lastName" />
+    <input type="submit" value="Check FullName" />
+    <div>
+        <h1>I get the result by using http get verb:  @ViewBag.Result</h1>
+        @TempData["StudentCounts"]
+    </div>
+</form>
