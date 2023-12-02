@@ -1,0 +1,73 @@
+﻿<script>
+    function fillData(){
+        //rebinding the selected from currency
+        if ("@ViewBag.SelectedFromCurrency" != null) {
+            document.getElementById("selFromCurrency").value = "@ViewBag.SelectedFromCurrency";
+        }
+        //rebinding the iputed amount 
+        if ("@ViewBag.InputedAmount">=0){
+            document.getElementById("txtAmount").value = "@ViewBag.InputedAmount";
+        }    
+    }
+</script>
+<body onload="fillData();">
+    <form action="/CurrencyConvertor/CurrencyConvertorV2" method="post">
+        <div style="text-align:center">
+            <table align="center" border="1">
+                <tr>
+                    <td colspan="2" align="center">
+                        <b>Currency Convertor to MMK v2</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Choose Currency :
+                    </td>
+                    <td>
+                        <select name="fromCurrency" id="selFromCurrency">
+                            <option value="">--Select One--</option>
+                            <option value="usd">
+                                USD Dollar
+                            </option>
+                            <option value="sdg">
+                                Singapor Dollar
+                            </option>
+                            <option value="tbh">
+                                Thai Baht
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Amount :
+                    </td>
+                    <td>
+                        <input type="text" name="amount" id="txtAmount"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Result(MMK):
+                    </td>
+                    <td>
+                        <input type="number" value="@ViewBag.Result" readonly disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Convert" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <span style="color:red"><b>@ViewBag.Msg</b></span>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </form>
+</body>
