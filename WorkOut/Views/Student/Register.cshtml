@@ -1,0 +1,83 @@
+﻿<html>  
+<head>   
+<title>  
+Registration Page  
+</title>  
+</head>  
+<body bgcolor="Lightskyblue">  
+<br>  
+<br>  
+<form action="/student/register" method="post">  
+  
+<label> Firstname </label>         
+<input type="text" name="firstname" size="15"/> <br> <br>  
+<label> Middlename: </label>     
+<input type="text" name="middlename" size="15"/> <br> <br>  
+<label> Lastname: </label>         
+<input type="text" name="lastname" size="15"/> <br> <br>  
+  
+<label>   
+Course :  
+</label>   
+<select name="courseName">  
+<option value="Course">Course</option>  
+<option value="BCA">BCA</option>  
+<option value="BBA">BBA</option>  
+<option value="B.Tech">B.Tech</option>  
+<option value="MBA">MBA</option>  
+<option value="MCA">MCA</option>  
+<option value="M.Tech">M.Tech</option>  
+</select>  
+  
+<br>  
+<br>  
+<label>   
+Gender :  
+</label><br>  
+<input type="radio" value="male" name="gender"/> Male <br>
+        <input type="radio" value="female" name="gender" /> Female <br>
+        <input type="radio" value="other" name="gender" /> Other
+        <br>  
+<br>  
+  
+<label>   
+Phone :  
+</label>  
+<input type="text" name="countrycode"  value="+91" size="2"/>   
+<input type="text" name="phone" size="10"/> <br> <br>  
+Address  
+<br>  
+<textarea cols="80" rows="5" name="address">  
+</textarea>  
+<br> <br>  
+Email:  
+<input type="email" id="email" name="email"/> <br>
+        Coutry:
+        <select name="HomeAddress.Country">
+            <option value="Myanmar">Myanmar</option>
+            <option value="USA">USA</option>
+            <option value="Thai">Thai</option>
+            <option value="Singapore">Singapore</option>
+        </select>
+        <br>
+        Coutry:
+        <select name="HomeAddress.City">
+            <option value="Yangon">Yangon</option>
+            <option value="Mandalay">Mandalay</option>
+            <option value="Naypyitaw">Naypyitaw</option>
+        </select>
+        Street
+        <br>
+        <label>
+            PoscalCode :
+        </label>
+        <input type="text" name="HomeAddress.PostalCode"  size="5" />
+<textarea cols="80" rows="5" name="HomeAddress.Street">  </textarea>
+<input type="submit" value="Register"/>
+    </form>
+    @if(ViewBag.StudentInfo != null)
+    {
+        <span><b>Hello,@ViewBag.StudentInfo you registered successfully.</b></span>
+    }
+</body>  
+</html>  

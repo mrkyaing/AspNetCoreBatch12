@@ -1,0 +1,36 @@
+﻿<form action="student/studentAsList" method="post">
+    <table>
+        <tr>
+            <th>FristName</th>
+            <th>LastName</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="[0].FirstName" /></td>
+            <td><input type="text" name="[0].LastName" /></td>
+            <td><input type="text" name="[0].Email" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="[1].FirstName" /></td>
+            <td><input type="text" name="[1].LastName" /></td>
+            <td><input type="text" name="[1].Email" /></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="[2].FirstName" /></td>
+            <td><input type="text" name="[2].LastName" /></td>
+            <td><input type="text" name="[2].Email" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="submit" value="Register"/></td>
+        </tr>
+        <tr>
+            <td colspan="3">@if (ViewBag.TotalStudents != null)
+                {
+                    <b>Total @ViewBag.TotalStudents was registered successfully</b>
+                }
+            </td>
+
+        </tr>
+    </table>
+
+</form>

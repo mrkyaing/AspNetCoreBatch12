@@ -4,10 +4,8 @@ namespace WorkOut.Controllers
 {
     public class CurrencyConvertorController : Controller
     {
-        public IActionResult CurrencyConvertorV1()
-        {
-            return View();
-        }
+        public IActionResult CurrencyConvertorV1()=>View();
+        
         [HttpPost]
         public IActionResult CurrencyConvertorV1(string fromCurrency,decimal amount)
         {
@@ -26,6 +24,7 @@ namespace WorkOut.Controllers
             ViewBag.Result=result;
             return View();
         }
+        
         public IActionResult CurrencyConvertorV2()
         {
             return View();
