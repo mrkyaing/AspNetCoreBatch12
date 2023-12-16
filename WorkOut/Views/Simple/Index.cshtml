@@ -1,0 +1,24 @@
+﻿<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<h1>Test AJAX called with JQuery</h1>
+<p id="p1">The time will show in here.</p>
+<h2 id="randomvalue"></h2>
+Name:<input type="text" id="txtName"class="form-control"/>
+<button id="btnshowTime" class="btn btn-primary">show me time</button>
+<button id="btnRandomNum" class="btn btn-primary">show me time</button>
+<script>
+    $("#btnshowTime").on("click", function () {
+        var url = "/simple/showmetime";
+        $.get(url, null, function (response) {
+            $("#p1").html(response);
+        });
+    });
+    $("#btnRandomNum").on("click", function () {
+        var url = "/simple/ShowMeRandomNnumber";
+        $.get(url, null, function (response) {
+            $("#randomvalue").html(response);
+        });
+    });
+</script>
