@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Student Entry";
+}
+<body style="background-color:lightcyan">
+    @if (TempData["info"] != null)
+    {
+       <div class="alert alert-success">
+            @TempData["info"]
+       </div>
+    }
+    <form action="/student/entry" method="post">
+        <div class="mb-3">
+            <label class="form-label">Code</label>
+            <input type="text" class="form-control" name="Code">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="Name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="Email">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Date Of Birth</label>
+            <input type="date" class="form-control" name="DOB">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" name="Phone">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">NRC</label>
+            <input type="tel" class="form-control" name="NRC">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">FatherName</label>
+            <input type="tel" class="form-control" name="FatherName">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" name="Address"></textarea>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label" for="exampleCheck1">Terms & Condtions</label>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Entry"/>
+        <input type="reset" class="btn btn-primary" value="Cancel"/>
+    </form>
+</body>
