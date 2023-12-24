@@ -1,0 +1,36 @@
+﻿@model List<StudentViewModel>
+<h1>Student List Information</h1>
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Father Name</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.Code</td>
+                <td>@item.Name</td>
+                <td>@item.FatherName</td>
+                <td>@item.DOB</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>@item.Address</td>          
+            </tr>
+            index++;
+        }
+      
+    </tbody>
+</table>

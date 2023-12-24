@@ -11,6 +11,8 @@ namespace StudentInfoMgt.Controllers
         {
             _applicationDb = db;
         }
+
+        #region create process 
         public IActionResult Entry()
         {
             return View();
@@ -43,6 +45,25 @@ namespace StudentInfoMgt.Controllers
                 throw;
             }
             return View();
+        }
+        #endregion
+
+        public IActionResult List()
+        {
+            //Data exchange from Data Model to view Models
+           List<StudentViewModel> students=_applicationDb.Students.Select(s=>new StudentViewModel()
+           {
+               Id=s.Id,
+               Name = s.Name,
+               Code=s.Code,
+               Phone = s.Phone,
+               Email=s.Email,
+               NRC = s.NRC,
+               FatherName = s.FatherName,
+               DOB = s.DOB,
+               Address = s.Address
+           }).ToList();
+            return View(students);//passing the data to the View 
         }
     }
 }
