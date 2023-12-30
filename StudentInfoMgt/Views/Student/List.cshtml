@@ -1,5 +1,9 @@
 ﻿@model List<StudentViewModel>
 <h1>Student List Information</h1>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-info">@TempData["info"]</div>
+}
 <table class="table table-striped-columns">
     <thead>
         <tr>
@@ -11,6 +15,7 @@
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
             <th scope="col">Address</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,10 +32,13 @@
                 <td>@item.DOB</td>
                 <td>@item.Phone</td>
                 <td>@item.Email</td>
-                <td>@item.Address</td>          
+                <td>@item.Address</td>
+                <td>
+                    <a class="btn btn-success" href="/student/edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="/student/delete?id=@item.Id" onclick="return confirm('are you sure to delete this recrod?');" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                </td>
             </tr>
             index++;
         }
-      
     </tbody>
 </table>
