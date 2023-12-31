@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Passenger Entry";
+}
+<body>
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["info"]
+        </div>
+    }
+    <h3>Entry Passenger</h3>
+    <form action="/passenger/entry" method="post">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="Name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">NRC</label>
+            <input type="text" class="form-control" name="NRC">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="Email">
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" name="Phone">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Gender</label> <br />          
+            <input type="radio" class="form-check-input" name="Gender" value="Female" checked>Female
+            <input type="radio" class="form-check-input" name="Gender" value="Male">Male
+            <input type="radio" class="form-check-input" name="Gender" value="Other">Other
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Date Of Birth</label>
+            <input type="date" class="form-control" name="DOB">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" name="Address"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Entry" />
+        <input type="reset" class="btn btn-primary" value="Cancel" />
+    </form>
+</body>

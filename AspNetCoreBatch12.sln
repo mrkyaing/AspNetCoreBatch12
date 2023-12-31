@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstMVCDemo", "FirstMVCDem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkOut", "WorkOut\WorkOut.csproj", "{87C8F11C-104D-4E60-8CB6-89C459AF18AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentInfoMgt", "StudentInfoMgt\StudentInfoMgt.csproj", "{58991F74-2CCF-4E24-9B16-873D1343823F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentInfoMgt", "StudentInfoMgt\StudentInfoMgt.csproj", "{58991F74-2CCF-4E24-9B16-873D1343823F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOMS", "TOMS\TOMS.csproj", "{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{58991F74-2CCF-4E24-9B16-873D1343823F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58991F74-2CCF-4E24-9B16-873D1343823F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58991F74-2CCF-4E24-9B16-873D1343823F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
