@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkOut", "WorkOut\WorkOut.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentInfoMgt", "StudentInfoMgt\StudentInfoMgt.csproj", "{58991F74-2CCF-4E24-9B16-873D1343823F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOMS", "TOMS\TOMS.csproj", "{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TOMS", "TOMS\TOMS.csproj", "{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSendReceived", "FileSendReceived\FileSendReceived.csproj", "{B878819E-A7EE-404D-BACA-69F6A31CC65E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B19591AA-E797-4B59-AAC2-18E17FF2CEDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B878819E-A7EE-404D-BACA-69F6A31CC65E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B878819E-A7EE-404D-BACA-69F6A31CC65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B878819E-A7EE-404D-BACA-69F6A31CC65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B878819E-A7EE-404D-BACA-69F6A31CC65E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
