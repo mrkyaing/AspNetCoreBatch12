@@ -1,5 +1,44 @@
-﻿<h1>Passenger List Information</h1>
+﻿@model List<PassengerViewModel>
+<h1>Passenger List Information</h1>
 @if (TempData["info"] != null)
 {
     <div class="alert alert-info">@TempData["info"]</div>
 }
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">NRC</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.Name</td>
+                <td>@item.NRC</td>
+                <td>@item.DOB</td>
+                <td>@item.Gender</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>@item.Address</td>
+                <td>
+                    <a class="btn btn-success" href="/passenger/edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="/passenger/delete?id=@item.Id" onclick="return confirm('are you sure to delete this recrod?');" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>

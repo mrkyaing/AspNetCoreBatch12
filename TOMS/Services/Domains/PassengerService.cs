@@ -19,17 +19,27 @@ namespace TOMS.Services.Domains
 
         public void Delete(string Id)
         {
-            throw new NotImplementedException();
+           var pessenger=_applicationDb.Passengers.Find(Id);
+           if(pessenger != null) { 
+            _applicationDb.Passengers.Remove(pessenger);
+            _applicationDb.SaveChanges();
+            }
+        }
+
+        public PassengerEntity GetById(string id)
+        {
+            return _applicationDb.Passengers.Where(w=>w.Id==id).SingleOrDefault();
         }
 
         public IList<PassengerEntity> ReteriveAll()
         {
-            throw new NotImplementedException();
+            return _applicationDb.Passengers.ToList();
         }
 
         public void Update(PassengerEntity passenger)
         {
-            throw new NotImplementedException();
+           _applicationDb.Passengers.Update(passenger);
+            _applicationDb.SaveChanges();
         }
     }
 }

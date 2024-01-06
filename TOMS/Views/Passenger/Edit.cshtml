@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Passenger Update";
+}
+@model PassengerViewModel
+<body>
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["info"]
+        </div>
+    }
+    <h3>Update Passenger</h3>
+    <form action="/passenger/update" method="post">
+        <input type="hidden" value="@Model.Id" name="Id"/>
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="Name" value="@Model.Name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">NRC</label>
+            <input type="text" class="form-control" name="NRC" value="@Model.NRC">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="Email" value="@Model.Email">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" name="Phone" value="@Model.Phone">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Gender</label> <br />
+            <input type="radio" class="form-check-input" name="Gender" value="Female" @(Model.Gender=="Female"?"Checked":"")>Female
+            <input type="radio" class="form-check-input" name="Gender" value="Male" @(Model.Gender == "Male" ? "Checked" : "")>Male
+            <input type="radio" class="form-check-input" name="Gender" value="Other" @(Model.Gender == "Other" ? "Checked" : "")>Other
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Date Of Birth</label>
+            <input type="date" class="form-control" name="DOB" value="@Model.DOB.ToString("yyyy-MM-dd")">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" name="Address">@Model.Address</textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Update" />
+        <input type="reset" class="btn btn-primary" value="Cancel" />
+    </form>
+</body>

@@ -12,6 +12,8 @@ namespace TOMS.DAO
 
         //register all of the entities for tables
         public DbSet<PassengerEntity>  Passengers { get; set; }
-        public DbSet<TicketTypeEntity> TicketTypes { get; set; }
+        public DbSet<BusLineEntity> BusLines { get; set; }
+        public DbSet<CityEntity>  Cities { get; set; }
+        public DbSet<RouteEntity> Routes { get; set; }
     }
 }
