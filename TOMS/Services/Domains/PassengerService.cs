@@ -13,7 +13,7 @@ namespace TOMS.Services.Domains
 
         public void Create(PassengerEntity passenger)
         {
-            _applicationDb.Add(passenger);
+            _applicationDb.Passengers.Add(passenger);
             _applicationDb.SaveChanges();
         }
 

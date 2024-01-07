@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Route Entry";
+}
+<body>
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["info"]
+        </div>
+    }
+    <h3>Entry Routes</h3>
+    <form action="/route/entry" method="post">
+        <div class="mb-3">
+            <label class="form-label">From City </label>
+            <select name="FromCityId" class="form-control">
+            @foreach (var city in ViewBag.FromCityIds)
+            {           
+                    <option value="@city.Id">@city.Name</option>   
+            }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">To City </label>
+            <select name="ToCityId" class="form-control">
+                @foreach (var city in ViewBag.ToCityIds)
+                {
+                    <option value="@city.Id">@city.Name</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Time (HH:MM:SS)</label>
+            <input type="time" class="form-control" name="When" placeholder="enter time in this format :hh:mm:ss">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Unit Price</label>
+            <input type="text" class="form-control" name="UnitPrice">
+        </div>
+       
+        <div class="mb-3">
+            <label class="form-label">Bus Line </label>
+            <select name="BusLineId" class="form-control">
+                @foreach (var busLine in ViewBag.BusLineIds)
+                {
+                    <option value="@busLine.Id">@busLine.Owner</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Remarks</label>
+            <input type="text" class="form-control" name="Remark">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Entry" />
+        <input type="reset" class="btn btn-primary" value="Cancel" />
+    </form>
+</body>

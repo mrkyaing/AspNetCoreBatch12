@@ -1,21 +1,20 @@
-﻿@model List<PassengerViewModel>
-<h1>Passenger List Information</h1>
+﻿@model List<RouteViewModel>
+<h1>Route List Information</h1>
 @if (TempData["info"] != null)
 {
     <div class="alert alert-info">@TempData["info"]</div>
 }
-<table class="table table-striped-columns" id="tablePassenger">
+<table class="table table-striped-columns" id="tableRoute">
     <thead>
         <tr>
             <th scope="col">Sr.No</th>
-            <th scope="col">Name</th>
-            <th scope="col">NRC</th>
-            <th scope="col">DOB</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Email</th>
+            <th scope="col">Form City</th>
+            <th scope="col">To City </th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">When </th>
+            <th scope="col">Bus Line Name</th>
+            <th scope="col">Remark</th>
             <th scope="col">Address</th>
-            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -26,13 +25,12 @@
         {
             <tr>
                 <td>@index</td>
-                <td>@item.Name</td>
-                <td>@item.NRC</td>
-                <td>@item.DOB</td>
-                <td>@item.Gender</td>
-                <td>@item.Phone</td>
-                <td>@item.Email</td>
-                <td>@item.Address</td>
+                <td>@item.FormCityName</td>
+                <td>@item.ToCityName</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.When</td>
+                <td>@item.Owner</td>
+                <td>@item.Remark</td>
                 <td>
                     <a class="btn btn-success" href="/passenger/edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a href="/passenger/delete?id=@item.Id" onclick="return confirm('are you sure to delete this recrod?');" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
@@ -44,6 +42,6 @@
 </table>
 <script>
     $(document).ready(function () {
-        $("#tablePassenger").DataTable();
+        $("#tableRoute").DataTable();
     });
 </script>

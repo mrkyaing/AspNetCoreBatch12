@@ -11,7 +11,10 @@ var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(config.GetConnectionString("TOMSConnectionString")));
 //add and connect the connectiong from the appSettings.json
 //register all of the domain services
-builder.Services.AddScoped<IPassengerService,PassengerService>();
+builder.Services.AddScoped<IPassengerService, PassengerService>();
+builder.Services.AddScoped<IRouteService, RouteService>();
+builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<IBusLineService, BusLineService>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
