@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFCPractice", "PFCPractice\PFCPractice.csproj", "{C2A2D28D-51E0-42A6-B3F1-404AB748EBAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopintPractice", "LoopintPractice\LoopintPractice.csproj", "{BBF85A4C-18FF-4E42-A0A7-D59A114C8832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopingPractice", "LoopintPractice\LoopingPractice.csproj", "{BBF85A4C-18FF-4E42-A0A7-D59A114C8832}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectionPractice", "CollectionPractice\CollectionPractice.csproj", "{B5071131-62A8-46ED-A825-C2C3B572990E}"
 EndProject
