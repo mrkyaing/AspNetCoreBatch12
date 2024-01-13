@@ -15,5 +15,6 @@ namespace TOMS.DAO
         public DbSet<BusLineEntity> BusLines { get; set; }
         public DbSet<CityEntity>  Cities { get; set; }
         public DbSet<RouteEntity> Routes { get; set; }
+        public DbSet<PaymentTypeEntity> PaymentTypes { get; set; }
     }
 }

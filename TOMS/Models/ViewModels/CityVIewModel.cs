@@ -1,7 +1,6 @@
 ﻿namespace TOMS.Models.ViewModels
 {
-    public class CityVIewModel
-
+    public class CityViewModel
     {
         public string Id { get; set; }
         public string Code { get; set; }

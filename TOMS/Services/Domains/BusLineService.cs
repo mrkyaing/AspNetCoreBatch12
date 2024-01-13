@@ -11,29 +11,37 @@ namespace TOMS.Services.Domains
         {
             _applicationDbContext = applicationDbContext;
         }
-        public void Create(BusLineEntity entity)
+        public void Delete(string id)
         {
-            throw new NotImplementedException();
+            var busline=_applicationDbContext.BusLines.Find(id);
+            if (busline!=null)
+            {
+                _applicationDbContext.BusLines.Remove(busline);
+                _applicationDbContext.SaveChanges();
+            }
         }
 
-        public void Delete(string Id)
+        public void Entry(BusLineEntity busLine)
         {
-            throw new NotImplementedException();
+            _applicationDbContext.BusLines.Add(busLine);
+            _applicationDbContext.SaveChanges();
         }
 
         public BusLineEntity GetById(string id)
         {
-          return _applicationDbContext.BusLines.Find(id);
+            return _applicationDbContext.BusLines.Find(id);
         }
 
         public IList<BusLineEntity> ReteriveAll()
         {
-           return _applicationDbContext.BusLines.ToList();
+            IList<BusLineEntity> buslineList=_applicationDbContext.BusLines.ToList();
+            return buslineList;
         }
 
-        public void Update(BusLineEntity entity)
+        public void Update(BusLineEntity busLine)
         {
-            throw new NotImplementedException();
+            _applicationDbContext.BusLines.Update(busLine);
+            _applicationDbContext.SaveChanges();
         }
     }
 }

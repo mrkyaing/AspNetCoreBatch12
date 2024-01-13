@@ -37,8 +37,8 @@ namespace TOMS.Controllers
 
         public IActionResult Entry()
         {
-            ViewBag.FromCityIds=_cityService.ReteriveAll().Select(s=>new CityVIewModel { Id=s.Id,Name=s.Name}).ToList();
-            ViewBag.ToCityIds = _cityService.ReteriveAll().Select(s => new CityVIewModel { Id = s.Id, Name = s.Name }).ToList();
+            ViewBag.FromCityIds=_cityService.ReteriveAll().Select(s=>new CityViewModel { Id=s.Id,Name=s.Name}).ToList();
+            ViewBag.ToCityIds = _cityService.ReteriveAll().Select(s => new CityViewModel { Id = s.Id, Name = s.Name }).ToList();
             ViewBag.BusLineIds = _busLineService.ReteriveAll().Select(s => new BusLineViewModel { Id = s.Id, Owner = s.Owner }).ToList();
             return View();
         }
@@ -63,6 +63,67 @@ namespace TOMS.Controllers
             catch (Exception e)
             {
                 TempData["info"] = "Error when save the recrod to the system.";
+            }
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                _routeService.Delete(id);
+                TempData["info"] = "Delete successfully the recrod to the system.";
+            }
+            catch (Exception e)
+            {
+                TempData["info"] = "Error when delete the recrod to the system.";
+            }
+            return RedirectToAction("List");
+        }
+
+       public IActionResult Edit(string id)
+        {
+            var routeEntity= _routeService.GetById(id);
+            RouteViewModel routeViewModel = new RouteViewModel()
+            {
+                Id = routeEntity.Id,
+                FromCityId = routeEntity.FromCityId,
+                FormCityName=_cityService.GetById(routeEntity.ToCityId).Name,
+                ToCityId = routeEntity.ToCityId,
+                ToCityName=_cityService.GetById(routeEntity.FromCityId).Name,
+                When = routeEntity.When,
+                BusLineId=routeEntity.BusLineId,
+                Owner=_busLineService.GetById(routeEntity.BusLineId).Owner,
+                Remark=routeEntity.Remark,
+                UnitPrice=routeEntity.UnitPrice
+            };
+            ViewBag.FromCityIds = _cityService.ReteriveAll().Where(w=>w.Id!= routeEntity.FromCityId).Select(s => new CityViewModel { Id = s.Id, Name = s.Name }).ToList();
+            ViewBag.ToCityIds = _cityService.ReteriveAll().Where(w => w.Id != routeEntity.ToCityId).Select(s => new CityViewModel { Id = s.Id, Name = s.Name }).ToList();
+            ViewBag.BusLineIds = _busLineService.ReteriveAll().Where(w => w.Id != routeEntity.BusLineId).Select(s => new BusLineViewModel { Id = s.Id, Owner = s.Owner }).ToList();
+            return View(routeViewModel);
+        }
+        [HttpPost]
+        public IActionResult Update(RouteViewModel routevm)
+        {
+            try
+            {
+                RouteEntity route = new RouteEntity()
+                {
+                    Id = routevm.Id,
+                    FromCityId = routevm.FromCityId,
+                    ToCityId = routevm.ToCityId,
+                    UnitPrice = routevm.UnitPrice,
+                    Remark = routevm.Remark,
+                    BusLineId = routevm.BusLineId,
+                    When = routevm.When,
+                    UpdatedAt = DateTime.Now
+                };
+                _routeService.Update(route);
+                TempData["info"] = "Update successfully the recrod to the system.";
+            }
+            catch (Exception e)
+            {
+                TempData["info"] = "Error when Update the recrod to the system.";
             }
             return RedirectToAction("List");
         }

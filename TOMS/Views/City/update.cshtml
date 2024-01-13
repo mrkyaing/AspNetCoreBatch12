@@ -1,0 +1,43 @@
+﻿@model CityViewModel
+@{
+    ViewData["Title"] = "City Update";
+}
+
+<body style="background-color:lightcyan">
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["info"]
+        </div>
+    }
+    <h3 class="mx-auto">Entry BusLine</h3>
+    <form action="/City/update" method="post">
+        <input type="hidden" value="@Model.Id" name="Id"/>
+        <div class="mb-3">
+            <label class="form-label">Code</label>
+            <input type="text" class="form-control" name="Code" value="@Model.Code">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="Name" value="@Model.Name">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ZipCode</label>
+            <input type="number" class="form-control" name="ZipCode" value="@Model.ZipCode">
+
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label">Terms And Conditions</label>
+        </div>
+
+
+        <input type="submit" class="btn btn-primary" value="Entry">
+        <input type="reset" class="btn btn-secondary" value="Cancel">
+    </form>
+</body>
+
+

@@ -1,0 +1,55 @@
+﻿@model List<BusLineViewModel>
+<h1>Busline Information</h1>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["info"]</div>
+}
+<table class="table table-primary table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+
+            <th scope="col">LicenseNo</th>
+            
+            <th scope="col">Owner</th>
+            <th scope="col">Driver1</th>
+            <th scope="col">Driver1Phone</th>
+            <th scope="col">Driver2</th>
+            <th scope="col">Driver2Phone</th>
+            <th scope="col">Helper1</th>
+            <th scope="col">Helper1Phone</th>
+            <th scope="col">Helper2</th>
+            <th scope="col">Helper2Phone</th>
+            <th scope="col">Seats</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach (var busline in Model)
+        {
+            <tr>
+                <th scope="row">@index</th>
+                <td>@busline.No</td>
+                <td>@busline.Owner</td>
+                <td>@busline.Driver1</td>
+                <td>@busline.PhoneOfDriver1</td>
+                <td>@busline.Driver2</td>
+                <td>@busline.PhoneOfDriver2</td>
+                <td>@busline.Helper1</td>
+                <td>@busline.PhoneOfHelper1</td>
+                <td>@busline.Helper2</td>
+                <td>@busline.PhoneOfHelper2</td>
+                <td>@busline.NumberOfSeat</td>
+                <td>
+                    <a href="/busline/update?id=@busline.Id" class="btn btn-success"><i class="fa-solid fa-pen-nib "></i></a>
+                    <a href="/busline/DeleteBusLine?id=@busline.Id" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            index++;
+        }
+
+    </tbody>
+</table>

@@ -15,6 +15,7 @@ builder.Services.AddScoped<IPassengerService, PassengerService>();
 builder.Services.AddScoped<IRouteService, RouteService>();
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IBusLineService, BusLineService>();
+builder.Services.AddScoped<IPaymentTypeService, PaymentTypeService>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

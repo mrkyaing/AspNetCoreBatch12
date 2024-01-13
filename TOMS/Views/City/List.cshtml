@@ -1,0 +1,41 @@
+﻿@model List<CityViewModel>
+<h1>City Information</h1>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["info"]</div>
+}
+<table class="table table-primary table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+
+            <th scope="col">Code</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">ZipCode</th>
+            
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach (var city in Model)
+        {
+            <tr>
+                <th scope="row">@index</th>
+                <td>@city.Code</td>
+                <td>@city.Name</td>
+                <td>@city.ZipCode</td>
+                
+                <td>
+                    <a href="/city/update?id=@city.Id" class="btn btn-success"><i class="fa-solid fa-pen-nib "></i></a>
+                    <a href="/city/Delete?id=@city.Id" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            index++;
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,88 @@
+﻿@model BusLineViewModel
+@{
+    ViewData["Title"] = "BusLine Update";
+}
+
+<body style="background-color:lightcyan">
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["info"]
+        </div>
+    }
+    <h3 class="mx-auto">Entry BusLine</h3>
+    <form action="/BusLine/update" method="post">
+        <input type="hidden" value="@Model.Id" name="Id"/>
+        <div class="mb-3">
+            <label class="form-label">LicenseNo</label>
+            <input type="text" class="form-control" name="No" value="@Model.No">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Owner</label>
+            <input type="text" class="form-control" name="Owner" value="@Model.Owner">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Driver1</label>
+            <input type="text" class="form-control" name="Driver1" value="@Model.Driver1">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Driver1 Phone</label>
+            <input type="text" class="form-control" name="PhoneOfDriver1" value="@Model.PhoneOfDriver1">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Driver2</label>
+            <input type="text" class="form-control" name="Driver2" value="@Model.Driver2">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Driver2 Phone</label>
+            <input type="text" class="form-control" name="PhoneOfDriver2" value="@Model.PhoneOfDriver2">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Helper1</label>
+            <input type="text" class="form-control" name="Helper1" value="@Model.Helper1">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Helper1 Phone</label>
+            <input type="text" class="form-control" name="PhoneOfHelper1" value="@Model.PhoneOfHelper1">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Helper2</label>
+            <input type="text" class="form-control" name="Helper2" value="@Model.Helper2">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Helper2 Phone</label>
+            <input type="text" class="form-control" name="PhoneOfHelper2" value="@Model.PhoneOfHelper2">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Number Of Seat</label>
+            <input type="number" class="form-control" name="NumberOfSeat" value="@Model.NumberOfSeat">
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select class="form-select" aria-label="Default select example" name="Type">
+                <option selected value="@Model.Type">@Model.Type</option>
+                <option value="Normal">Normal</option>
+                <option value="Special">Special</option>
+
+            </select>
+        </div>
+      
+
+
+        <input type="submit" class="btn btn-primary" value="Update">
+        <input type="reset" class="btn btn-secondary" value="Cancel">
+    </form>
+</body>
+
+
