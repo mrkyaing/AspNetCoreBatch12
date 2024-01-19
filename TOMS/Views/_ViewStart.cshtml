@@ -1,3 +1,8 @@
-﻿@{
-    Layout = "_Layout";
-}
+﻿@if (User.IsInRole("Admin"))
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
