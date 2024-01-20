@@ -25,63 +25,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Passenger
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/passenger/entry">Entry</a></li>
-                                <li><a class="dropdown-item" href="/passenger/list">List</a></li>
-                            </ul>
-                        </li>
+                     
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Busline
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Busline" asp-action="Entry">Entry</a></li>
                                 <li><a class="dropdown-item" asp-controller="Busline" asp-action="List">List</a></li>
-
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                City
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="City" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-controller="City" asp-action="List">List</a></li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Payment Type
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="paymentType" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-controller="paymentType" asp-action="List">List</a></li>
-
-                            </ul>
-                        </li>
+                    
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Route
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Route" asp-action="Entry">Entry</a></li>
                                 <li><a class="dropdown-item" asp-controller="Route" asp-action="List">List</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Reports
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="report" asp-action="BusLineDetailReport">Bus Line Detail Report</a></li>
-                                <li><a class="dropdown-item" asp-controller="Route" asp-action="#">#</a></li>
-                            </ul>
-                        </li>
+                        
                     <li class="nav-item">
                         <partial name="_LoginPartial" />
                     </li>
