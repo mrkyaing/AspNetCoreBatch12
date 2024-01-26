@@ -1,5 +1,5 @@
-﻿@model List<RouteViewModel>
-<h1>Route List Information</h1>
+﻿@model List<SearchRouteResultViewModel>
+<h1>Search Routes  Result List Information</h1>
 @if (TempData["info"] != null)
 {
     <div class="alert alert-info">@TempData["info"]</div>
@@ -8,17 +8,15 @@
     <thead>
         <tr>
             <th scope="col">Sr.No</th>
+            <th scope="col">Bus Line Type</th>
+            <th scope="col">Number Of Seats</th>
+            <th scope="col">Bus Line Name</th>
             <th scope="col">Form City</th>
             <th scope="col">To City </th>
             <th scope="col">Unit Price</th>
             <th scope="col">When </th>
-            <th scope="col">Bus Line Name</th>
             <th scope="col">Remark</th>
-            <th scope="col">Address</th>
-            @if (User.IsInRole("Admin"))
-            {
-                <th scope="col">Actions</th>
-            }
+           <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -29,19 +27,17 @@
         {
             <tr>
                 <td>@index</td>
+                <td>@item.Type</td>
+                <td>@item.NumberOfSeat</td>
+                <td>@item.Owner</td>
                 <td>@item.FormCityName</td>
                 <td>@item.ToCityName</td>
                 <td>@item.UnitPrice</td>
                 <td>@item.When</td>
-                <td>@item.Owner</td>
                 <td>@item.Remark</td>
-                @if (User.IsInRole("Admin"))
-                {
                     <td>
-                        <a class="btn btn-success" href="/route/edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="/route/delete?id=@item.Id" onclick="return confirm('are you sure to delete this recrod?');" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    <a class="btn btn-success" href="/TicketOrder/SelectRouteByPassenger?routeId=@item.RouteId"><i class="fa-solid fa-pen-to-square"></i></a>
                 </td>
-                }
             </tr>
             index++;
         }

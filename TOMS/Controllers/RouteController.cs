@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using TOMS.Models.DataModels;
 using TOMS.Models.ViewModels;
@@ -34,7 +35,7 @@ namespace TOMS.Controllers
             }).ToList();
             return View(routes);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Entry()
         {
             ViewBag.FromCityIds=_cityService.ReteriveAll().Select(s=>new CityViewModel { Id=s.Id,Name=s.Name}).ToList();
@@ -42,6 +43,7 @@ namespace TOMS.Controllers
             ViewBag.BusLineIds = _busLineService.ReteriveAll().Select(s => new BusLineViewModel { Id = s.Id, Owner = s.Owner }).ToList();
             return View();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Entry(RouteViewModel routevm)
         {
@@ -66,7 +68,7 @@ namespace TOMS.Controllers
             }
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(string id)
         {
             try
@@ -80,8 +82,8 @@ namespace TOMS.Controllers
             }
             return RedirectToAction("List");
         }
-
-       public IActionResult Edit(string id)
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(string id)
         {
             var routeEntity= _routeService.GetById(id);
             RouteViewModel routeViewModel = new RouteViewModel()
@@ -102,6 +104,7 @@ namespace TOMS.Controllers
             ViewBag.BusLineIds = _busLineService.ReteriveAll().Where(w => w.Id != routeEntity.BusLineId).Select(s => new BusLineViewModel { Id = s.Id, Owner = s.Owner }).ToList();
             return View(routeViewModel);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(RouteViewModel routevm)
         {

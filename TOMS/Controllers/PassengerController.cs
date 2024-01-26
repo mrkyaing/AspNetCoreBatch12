@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using TOMS.Models.DataModels;
 using TOMS.Models.ViewModels;
@@ -29,10 +30,13 @@ namespace TOMS.Controllers
             }).ToList();
             return View(passengers);
         }
+       
+        [Authorize(Roles ="Admin")]
         public IActionResult Entry()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Entry(PassengerViewModel pvm)
         {
@@ -59,6 +63,7 @@ namespace TOMS.Controllers
             }
             return RedirectToAction("List");
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(string id)
         {
             try
@@ -73,7 +78,7 @@ namespace TOMS.Controllers
             }
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(string id)
         {               
             var passengerDataModel = _passengerService.GetById(id);
@@ -94,7 +99,7 @@ namespace TOMS.Controllers
             }
             return View(passengerViewModel);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(PassengerViewModel pvm)
         {

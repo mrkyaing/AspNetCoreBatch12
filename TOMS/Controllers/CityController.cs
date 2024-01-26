@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TOMS.Models.DataModels;
 using TOMS.Models.ViewModels;
 using TOMS.Services.Domains;
 
 namespace TOMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
         private readonly ICityService _cityService;

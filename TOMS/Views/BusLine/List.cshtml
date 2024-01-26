@@ -20,8 +20,13 @@
             <th scope="col">Helper1Phone</th>
             <th scope="col">Helper2</th>
             <th scope="col">Helper2Phone</th>
-            <th scope="col">Seats</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Number Of Seats</th>
+            <th scope="col">Type</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th scope="col">Actions</th>
+            }
+        
         </tr>
     </thead>
     <tbody>
@@ -43,10 +48,14 @@
                 <td>@busline.Helper2</td>
                 <td>@busline.PhoneOfHelper2</td>
                 <td>@busline.NumberOfSeat</td>
+                <td>@busline.Type</td>
+                @if (User.IsInRole("Admin"))
+                {
                 <td>
                     <a href="/busline/update?id=@busline.Id" class="btn btn-success"><i class="fa-solid fa-pen-nib "></i></a>
                     <a href="/busline/DeleteBusLine?id=@busline.Id" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa-solid fa-trash"></i></a>
                 </td>
+                }
             </tr>
             index++;
         }

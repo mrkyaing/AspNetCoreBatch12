@@ -1,0 +1,44 @@
+﻿@model List<PaymentTypeViewModel>
+<h1>Payment Type Information</h1>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["info"]</div>
+}
+<table class="table table-primary table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Payment Type</th>
+            <th scope="col">Account Number</th>
+            <th scope="col">AccountName</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th scope="col">Actions</th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach (var pt in Model)
+        {
+            <tr>
+                <th scope="row">@index</th>
+                <td>@pt.PaymentType</td>
+                <td>@pt.AccountNumber</td>
+                <td>@pt.AccountName</td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a href="/paymentType/update?id=@pt.Id" class="btn btn-success"><i class="fa-solid fa-pen-nib "></i></a>
+                        <a href="/paymentType/DeleteBusLine?id=@pt.Id" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                }
+            </tr>
+            index++;
+        }
+
+    </tbody>
+</table>

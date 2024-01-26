@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TOMS.Models.DataModels;
 using TOMS.Models.ViewModels;
 using TOMS.Services.Domains;
 
 namespace TOMS.Controllers
-{
-    
+{ 
     public class BusLineController : Controller
     {
         private readonly IBusLineService _busLineService;
@@ -14,17 +14,17 @@ namespace TOMS.Controllers
         {
             _busLineService = busLineService;
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Entry()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Entry(BusLineViewModel busLineView) {
-
-
             try
             {
-                BusLineEntity busLineEntity = new BusLineEntity()
+                var busLineEntity = new BusLineEntity()
                 {
                     Id = Guid.NewGuid().ToString(),
                     No = busLineView.No,
@@ -38,11 +38,10 @@ namespace TOMS.Controllers
                     PhoneOfHelper1 = busLineView.PhoneOfHelper1,
                     PhoneOfHelper2 = busLineView.PhoneOfHelper2,
                     NumberOfSeat = busLineView.NumberOfSeat,
-                    Type = busLineView.Type,
-
+                    Type = busLineView.Type
                 };
                 _busLineService.Entry(busLineEntity);
-                TempData["info"] = "Successfully Added Busline Record to the system";
+                TempData["info"] = "Successfully Added Bus Line Record to the system";
             }
             catch (Exception)
             {
@@ -72,6 +71,7 @@ namespace TOMS.Controllers
             }).ToList();
             return View(BuslineView);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteBusLine(string id)
         {
             try
@@ -86,6 +86,7 @@ namespace TOMS.Controllers
                 return RedirectToAction("list");
             }
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(string id) {
             BusLineViewModel busLineView = new BusLineViewModel();
             BusLineEntity busLineEntity= _busLineService.GetById(id);
@@ -107,6 +108,7 @@ namespace TOMS.Controllers
             }
             return View(busLineView);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(BusLineViewModel busLineViewModel)
         {

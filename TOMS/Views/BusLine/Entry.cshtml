@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "BusLine Entry";
 }
-
 <body style="background-color:lightcyan">
     @if (TempData["info"] != null)
     {
@@ -28,7 +27,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Driver1 Phone</label>
-            <input type="text" class="form-control" name="PhoneOfDirver1">
+            <input type="text" class="form-control" name="PhoneOfDriver1">
 
         </div>
         <div class="mb-3">
@@ -69,8 +68,8 @@
         <div class="mb-3">
             <label class="form-label">Type</label>
             <select class="form-select" aria-label="Default select example" name="Type">
-                <option selected value="Normal">Normal</option>
-                <option value="Special">Special</option>
+                <option selected value="NORMAL">NORMAL</option>
+                <option value="VIP">VIP</option>
 
             </select>
         </div>

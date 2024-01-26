@@ -1,0 +1,60 @@
+﻿@model List<SearchRouteViewModel>
+@{
+    ViewData["Title"] = "Search Route";
+}
+<body>
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["info"]
+        </div>
+    }
+    <h3>Search Routes</h3>
+    <form action="/TicketOrder/SearchRouteBy" method="get">
+        <div class="mb-3">
+            <label class="form-label">Select Bus Line Type </label>
+             <select name="BusLineType" class="form-control">
+                <option value="x">--SELECT ONE--</option>
+                @foreach (var b in ViewBag.BusLineTypes)
+                {
+                    <option value="@b">@b</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Select Passenger Type </label>
+            <select name="PassengerType" class="form-control">
+                <option value="x">--SELECT ONE--</option>
+                @foreach (var p in ViewBag.PassengeTypes)
+                {
+                    <option value="@p">@p</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">From City </label>
+            <select name="FromCityId" class="form-control">
+                <option value="x">--SELECT ONE--</option>
+                @foreach (var city in Model)
+                {
+                    <option value="@city.FromCityId">@city.FromCityName</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">To City </label>
+            <select name="ToCityId" class="form-control">
+                <option value="x">--SELECT ONE--</option>
+                @foreach (var city in Model)
+                {
+                    <option value="@city.ToCityId">@city.ToCityName</option>
+                }
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Search" />
+        <input type="reset" class="btn btn-primary" value="Cancel" />
+    </form>
+</body>

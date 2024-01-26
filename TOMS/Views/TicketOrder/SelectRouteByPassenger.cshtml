@@ -1,0 +1,148 @@
+﻿@model SeatPlanViewModel
+<h1>Your seat plan has @Model.NumberOfSeat</h1>
+<h1>Your  Roud Id @Model.RouteId</h1>
+<input type="hidden" id="txtRouteId" value="@Model.RouteId"/>
+@if(Model.NumberOfSeat<=30){
+    <table border="1">
+        <tbody>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />A1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />A2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />B1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />B2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />C1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />C2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />D1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />D2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />E1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />E2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />F1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />F2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />G1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />G2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />H1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />H2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />I1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />I2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />J1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />J2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />K1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />K2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />L1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />L2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />M1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />N2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />O1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />O2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />P1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />Q2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />R1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />S2</button></td>
+            </tr>        
+        </tbody>
+    </table>
+}else if (Model.NumberOfSeat >=40)
+{
+    <table border="1">
+        <tbody>
+                <tr>
+                <td><button id="btnA1"><img src="~/images/seats/chair.svg" width="50" height="50"/>A1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />A2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />B1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />B2</button></td>
+                </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />C1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />C2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />D1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />D2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />E1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />E2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />F1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />F2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />G1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />G2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />H1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />H2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />I1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />I2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />J1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />J2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />K1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />K2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />L1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />L2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />M1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />N2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />O1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />O2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />P1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />Q2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />R1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />S2</button></td>
+            </tr>
+              <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />T1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />T2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />U1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />U2</button></td>
+            </tr>
+            <tr>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />V1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />V2</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />W1</button></td>
+                <td><button><img src="~/images/seats/chair.svg" width="50" height="50" />W2</button></td>
+            </tr>
+        </tbody>
+    </table>
+}
+<script>
+    $("#btnA1").on("click", function () {
+        var url = "/TicketOrder/SelectSeatNo";
+        var selectedTicketInfos = {};//make a json object
+        selectedTicketInfos.RouteId = $("#txtRouteId").val();//get the user's input value of order id
+        selectedTicketInfos.SeatNo ="A1";
+        selectedTicketInfos.SeatPlace = "WindowSide";
+        // order.PassengerType = $("#txtUnitPrice").val();
+        // order.SeatRow = $("#txtUnitPrice").val();
+        // order.SeatPlace = $("#txtUnitPrice").val();
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: selectedTicketInfos,
+            success: function (response) {
+                var data = JSON.stringify(response);
+                alert("Your total order cost is " + data);//3600
+            },
+            failure: function (error) {
+                console.log(error);
+            }
+        });
+    })
+</script>
