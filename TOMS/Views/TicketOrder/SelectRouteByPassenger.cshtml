@@ -1,5 +1,4 @@
 ﻿@model SeatPlanViewModel
-<h1 class="text-white">Your seat plan has @Model.NumberOfSeat</h1>
 <div class="row">
     <div class="col-7">
         <div class="seatPlan py-3 text-center rounded-top">
@@ -27,7 +26,7 @@
              <input type="hidden" id="txtRouteId" value="@Model.RouteId" />
             <div class="mb-3 row">
                 <label class="col">Passenger Type :</label>
-                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.PassengerType" readonly>
+                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.PassengerType" readonly id="txtPassengerType">
             </div>
             <div class="mb-3 row">
                 <label class="col">Bus Line Type:</label>
@@ -39,54 +38,53 @@
             </div>
             <div class="mb-3 row">
                 <label class="col">Depatured Date (ခရီးစဉ် ရက်စွဲ)):</label>
-                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.DepaturedDate" readonly>
+                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.DepaturedDate" readonly id="dptDepaturedDate">
             </div>
             <div class="mb-3 row">
-                <label class="col">Unit Price (လက်မှတ်ခ):</label>
-                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.UnitPrice" readonly>
+                <label class="col">Unit Price (MMK) (လက်မှတ်ခ-ကျပ်):</label>
+                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.UnitPrice" readonly id="txtUnitPrice">
             </div>
             <div class="mb-3 row">
                 <label class="col">Seat Row</label>
                 <input type="text" disabled class="border border-light col text-start bg-light p-1 text-primary overflow-auto" id="seatRow">
             </div>
             <div class="mb-3 row">
-                <label class="col">Seat Place</label>
-                <input type="text" readonly class="border border-light col text-start bg-transparent" value="email@example.com">
-            </div>
-            <div class="mb-3 row">
                 <label class="col">Status</label>
                 <input type="text" readonly class="border border-light col text-start bg-transparent" value="Pending">
             </div>
+            <div class="mb-3 row">
+                <label class="col">Number Of Ticket (s)</label>
+                <input type="number" readonly class="border border-light col text-start bg-transparent" id="txtNumberOfTickets">
+            </div>
+            <div class="mb-3 row">
+                <label class="col">Total Price (MMK)</label>
+                <input type="text" readonly class="border border-light col text-start bg-transparent" id="txtTotalAmount">
+            </div>
             <input class=" form-control selectSeat text-center text-primary fs-5 fw-bold" disabled />
-            <button class="btn btn-danger checking mt-5 col-12">Check</button>
+            <button class="btn btn-danger checking mt-5 col-12">Check out</button>
         </div>
     </div>
 </div>
 <script>
     let allSelectSeats = [];
     let allSelectRoles = [];
-
+    let numberOfSelectedTickets = 0;
     $(".seatContainer").on('click', function (event) {
-
+        debugger;
         let clickSeat = $(event.target);
-
-
         clickSeat.toggleClass("selectedSeat AboutSeat");
         let currentValue = $(".selectSeat").val();
         let currentRowValue = $("#seatRow").val();
-
         let modifiedValue;
         let seatRow;
-
         let removeValue = clickSeat.html()
         let removeRole = clickSeat.html() + " " + clickSeat.attr("id");
         if (!clickSeat.hasClass("AboutSeat")) {
             allSelectSeats.push(clickSeat.html());
-            allSelectRoles.push(clickSeat.attr("id"));
+            allSelectRoles.push(clickSeat.html()+","+clickSeat.attr("id"));
             if (currentValue == "") {
                 modifiedValue = clickSeat.html();
                 seatRow = clickSeat.html() + " " + clickSeat.attr("id");
-
             } else {
                 if (currentValue.charAt(currentValue.length - 1) == ",") {
                     modifiedValue = currentValue + clickSeat.html();
@@ -106,13 +104,36 @@
                 allSelectRoles.splice(rowIndex, 1);
             }
         }
-
         $(".selectSeat").val(modifiedValue);
-        $("#seatRow").val(seatRow)
+        $("#seatRow").val(seatRow);
+        $("#txtNumberOfTickets").val(allSelectSeats.length);
+        $("#txtTotalAmount").val(Number($("#txtNumberOfTickets").val()) * Number($("#txtUnitPrice").val()));
     })
     $(".checking").on('click', function () {
-
         console.log(allSelectSeats);
-
+        var url = "/TicketOrder/Checkout";
+        var selectedticketsInfo = {};//make a json object
+        selectedticketsInfo.TicketOrderedDate = $("#dptDepaturedDate").val();//get the user's input value of order id
+        selectedticketsInfo.PassengerType = $("#txtPassengerType").val();//get the user's input value of order id
+        selectedticketsInfo.RouteId = $("#txtRouteId").val();//get the user's input value of order id
+        selectedticketsInfo.SeatsNo = allSelectSeats;
+        selectedticketsInfo.SeatRows = allSelectRoles;
+        selectedticketsInfo.Status = "Reserved";
+        selectedticketsInfo.NumberOfTickets = $("#txtNumberOfTickets").val();//get the user's input value of order id
+        selectedticketsInfo.TotalAmount = $("#txtTotalAmount").val();//get the user's input value of order id
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: selectedticketsInfo,
+            success: function (response) {
+                var data = JSON.stringify(response);
+                var redirecturl = "/TicketOrder/Confirm";
+                localStorage.setItem('myData', response);
+                window.location = redirecturl;
+            },
+            failure: function (error) {
+                console.log(error);
+            }
+        });
     })
 </script>

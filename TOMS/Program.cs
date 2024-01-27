@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();//for identity razor page
+builder.Services.AddSession();//for storing data AddToCart
 //declare the configration
 var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(config.GetConnectionString("TOMSConnectionString")));
@@ -38,7 +39,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();//for storing addToCart function
 app.UseRouting();
 app.UseAuthentication();//enable authentication before authorization
 app.UseAuthorization();//enable authorization 

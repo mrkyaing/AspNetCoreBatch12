@@ -9,7 +9,6 @@
         public TimeSpan When { get; set; }
         public DateTime DepaturedDate { get; set; }
         public string RouteId { get; set; }
-        public List<string> SeatsNo { get; set; }
         public int NumberOfSeat { get; set; }
         public decimal UnitPrice { get; set; }
     }

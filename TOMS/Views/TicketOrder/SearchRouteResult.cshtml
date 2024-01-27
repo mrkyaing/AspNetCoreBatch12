@@ -46,7 +46,7 @@
                 <td>@item.When</td>
                 <td>@item.Remark</td>
                     <td>
-                    <a class="btn btn-success" href="/TicketOrder/SelectRouteByPassenger?routeId=@item.RouteId&passengerType=@Model.SingleOrDefault().PassengerType&depaturedDate=@Model.SingleOrDefault().DepaturedDate"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="btn btn-success" href="/TicketOrder/SelectRouteByPassenger?routeId=@item.RouteId&passengerType=@Model.FirstOrDefault().PassengerType&depaturedDate=@Model.FirstOrDefault().DepaturedDate"><i class="fa-solid fa-pen-to-square"></i></a>
                 </td>
             </tr>
             index++;

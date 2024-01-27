@@ -10,12 +10,14 @@ namespace TOMS.Controllers
         private readonly ICityService _cityService;
         private readonly IRouteService _routeService;
         private readonly IBusLineService _busLineService;
+        private readonly IPaymentTypeService _paymentTypeService;
 
-        public TicketOrderController(ICityService cityService,IRouteService routeService , IBusLineService busLineService)
+        public TicketOrderController(ICityService cityService,IRouteService routeService , IBusLineService busLineService,IPaymentTypeService paymentTypeService)
         {
             _cityService = cityService;
             _routeService = routeService;
             _busLineService = busLineService;
+            _paymentTypeService = paymentTypeService;
         }
         public IActionResult SearchRoute()
         {
@@ -111,9 +113,26 @@ namespace TOMS.Controllers
             return View(seatPan);
         }
         [HttpPost]
-        public JsonResult SelectSeatNo(TicketViewModel ticket)
+        public JsonResult Checkout(TicketViewModel selectedtickets)
         {
-            return Json(ticket);
+            SessionHelper.SetDataToSession(HttpContext.Session, "ticketInfos", selectedtickets);
+            return Json(selectedtickets);
+        }
+        public IActionResult Confirm()
+        {
+            TicketViewModel tickets = SessionHelper.GetDataFromSession<TicketViewModel>(HttpContext.Session, "ticketInfos");
+            ViewBag.PaymentTypeInfo=_paymentTypeService.RetrieveAll().Select(s=>new PaymentTypeViewModel 
+            { 
+                Id=s.Id,PaymentType= s.PaymentType,
+                AccountName= s.AccountName,
+                AccountNumber=s.AccountNumber
+            }).ToList();
+            return View(tickets);
+        }
+        [HttpPost]
+        public IActionResult MakePayment()
+        {
+            return View();
         }
     }
 }
