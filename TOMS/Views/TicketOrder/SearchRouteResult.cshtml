@@ -4,6 +4,16 @@
 {
     <div class="alert alert-info">@TempData["info"]</div>
 }
+<div>
+    <div class="form-control">
+        <label>Passenger  Type:</label>
+        <input type="text" value="@Model.FirstOrDefault().PassengerType" id="txtPassengerType" readonly/>
+    </div>
+    <div class="form-control">
+        <label>DepaturedDate:</label>
+        <input type="text" value="@Model.FirstOrDefault().DepaturedDate" id="dtpDepaturedDate" readonly/>
+    </div>
+</div>
 <table class="table table-striped-columns" id="tableRoute">
     <thead>
         <tr>
@@ -36,7 +46,7 @@
                 <td>@item.When</td>
                 <td>@item.Remark</td>
                     <td>
-                    <a class="btn btn-success" href="/TicketOrder/SelectRouteByPassenger?routeId=@item.RouteId"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="btn btn-success" href="/TicketOrder/SelectRouteByPassenger?routeId=@item.RouteId&passengerType=@Model.SingleOrDefault().PassengerType&depaturedDate=@Model.SingleOrDefault().DepaturedDate"><i class="fa-solid fa-pen-to-square"></i></a>
                 </td>
             </tr>
             index++;

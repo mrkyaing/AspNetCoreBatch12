@@ -80,7 +80,9 @@ namespace TOMS.Controllers
                                                                                             ToCityName=r.ToCityName,
                                                                                             UnitPrice=r.UnitPrice,
                                                                                             When = r.When,
-                                                                                            Remark=r.Remark
+                                                                                            Remark=r.Remark,
+                                                                                            PassengerType=searchRouteViewModel.PassengerType,
+                                                                                            DepaturedDate=searchRouteViewModel.DepaturedDate
                                                                                         }).ToList();
             return View("SearchRouteResult", searchRouteResults);
         }
@@ -88,13 +90,23 @@ namespace TOMS.Controllers
         public IActionResult SearchRouteResult() => View();
 
         [HttpGet]
-        public IActionResult SelectRouteByPassenger(string routeId)
+        public IActionResult SelectRouteByPassenger(string routeId,string passengerType,DateTime depaturedDate)
         {
-            var busLineId = _routeService.GetById(routeId).BusLineId;
+            ViewBag.SeatNumbers = new List<string> { "A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" };
+            var route = _routeService.GetById(routeId);
+            var busLine = _busLineService.GetById(route.BusLineId);
+         
             SeatPlanViewModel seatPan = new SeatPlanViewModel()
             {
-                NumberOfSeat = _busLineService.GetById(busLineId).NumberOfSeat,
-                RouteId = routeId
+                PassengerType=passengerType,
+                BusLineType=busLine.Type,           
+                FromCity=_cityService.GetById(route.FromCityId).Name,
+                ToCity=_cityService.GetById(route.ToCityId).Name,
+                When=route.When,
+                DepaturedDate = depaturedDate,
+                UnitPrice = route.UnitPrice,
+                RouteId=routeId,
+                NumberOfSeat=busLine.NumberOfSeat//for define the seat plans
             };
             return View(seatPan);
         }

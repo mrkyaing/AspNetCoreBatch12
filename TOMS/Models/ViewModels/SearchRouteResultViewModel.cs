@@ -2,6 +2,8 @@
 {
     public class SearchRouteResultViewModel
     {
+        public string PassengerType { get; set; }
+        public DateTime DepaturedDate { get; set; }
         public string Type { get; set; }
         public string Owner { get; set; }
         public int NumberOfSeat { get; set; }

@@ -5,6 +5,7 @@ namespace TOMS.Models.DataModels
     [Table("Ticket")]
     public class TicketEntity:BaseEntity
     {
+        public DateTime TicketOrderedDate { get; set; }
         public string RouteId { get; set; }
         public string SeatNo { get; set; }
         public string PassengerType { get; set; }

@@ -53,8 +53,15 @@
                 }
             </select>
         </div>
-
+        <div class="mb-3">
+            <label class="form-label">Depatured Date </label>
+            <input type="date" class="form-control" name="DepaturedDate">
+        </div>
         <input type="submit" class="btn btn-primary" value="Search" />
         <input type="reset" class="btn btn-primary" value="Cancel" />
     </form>
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("DepaturedDate")[0].setAttribute('min', today);
+    </script>
 </body>

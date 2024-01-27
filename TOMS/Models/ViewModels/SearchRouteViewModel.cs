@@ -8,6 +8,6 @@
         public string  FromCityName { get; set; }
         public string ToCityId { get; set; }
         public string ToCityName { get; set; }
-
+        public DateTime DepaturedDate { get; set; }
     }
 }
