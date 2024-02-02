@@ -1,5 +1,6 @@
 ﻿using TOMS.DAO;
 using TOMS.Models.DataModels;
+using TOMS.Models.ViewModels;
 
 namespace TOMS.Services.Domains
 {
@@ -43,6 +44,11 @@ namespace TOMS.Services.Domains
         public IList<TicketEntity> ReteriveAll()
         {
             return _applicationDb.Tickets.ToList();
+        }
+
+        public IList<SeatPlan> ReteriveByTicketOrderedDateAndRouteId(DateTime ticketOrderedDate, string routeId)
+        {
+            return _applicationDb.Tickets.Where(x=>x.TicketOrderedDate==ticketOrderedDate&&x.RouteId==routeId).Select(s=>new SeatPlan(s.SeatNo)).ToList();
         }
 
         public void Update(TicketEntity ticket)

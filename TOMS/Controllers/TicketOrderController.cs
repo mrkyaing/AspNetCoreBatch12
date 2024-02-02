@@ -11,13 +11,15 @@ namespace TOMS.Controllers
         private readonly IRouteService _routeService;
         private readonly IBusLineService _busLineService;
         private readonly IPaymentTypeService _paymentTypeService;
+        private readonly ITicketOrderService _ticketOrderService;
 
-        public TicketOrderController(ICityService cityService,IRouteService routeService , IBusLineService busLineService,IPaymentTypeService paymentTypeService)
+        public TicketOrderController(ICityService cityService,IRouteService routeService , IBusLineService busLineService,IPaymentTypeService paymentTypeService,ITicketOrderService ticketOrderService)
         {
             _cityService = cityService;
             _routeService = routeService;
             _busLineService = busLineService;
             _paymentTypeService = paymentTypeService;
+            _ticketOrderService = ticketOrderService;
         }
         public IActionResult SearchRoute()
         {
@@ -94,21 +96,32 @@ namespace TOMS.Controllers
         [HttpGet]
         public IActionResult SelectRouteByPassenger(string routeId,string passengerType,DateTime depaturedDate)
         {
-            ViewBag.SeatNumbers = new List<string> { "A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" };
+            var defaultSeats = SeatPlanHelper.GetSeatPlans();
+            var saledSeats = _ticketOrderService.ReteriveByTicketOrderedDateAndRouteId(depaturedDate, routeId);
+            for(int i = 0; i < defaultSeats.Count; i++)
+            {
+                foreach(var s in saledSeats)
+                {
+                    if (s.SeatNo.Trim().ToLower() ==defaultSeats[i].SeatNo.Trim().ToLower())
+                    {
+                        defaultSeats[i].Status= "red";
+                    }
+                }
+            }
             var route = _routeService.GetById(routeId);
             var busLine = _busLineService.GetById(route.BusLineId);
-         
             SeatPlanViewModel seatPan = new SeatPlanViewModel()
             {
-                PassengerType=passengerType,
-                BusLineType=busLine.Type,           
-                FromCity=_cityService.GetById(route.FromCityId).Name,
-                ToCity=_cityService.GetById(route.ToCityId).Name,
-                When=route.When,
+                PassengerType = passengerType,
+                BusLineType = busLine.Type,
+                FromCity = _cityService.GetById(route.FromCityId).Name,
+                ToCity = _cityService.GetById(route.ToCityId).Name,
+                When = route.When,
                 DepaturedDate = depaturedDate,
                 UnitPrice = route.UnitPrice,
-                RouteId=routeId,
-                NumberOfSeat=busLine.NumberOfSeat//for define the seat plans
+                RouteId = routeId,
+                NumberOfSeat =busLine.NumberOfSeat,//for define the seat plans
+                Seats = defaultSeats
             };
             return View(seatPan);
         }
@@ -132,6 +145,5 @@ namespace TOMS.Controllers
             }).ToList();
             return View(tickets);
         }
-       
     }
 }

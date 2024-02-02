@@ -11,11 +11,11 @@
                 <div class="col-6 border-bottom border-3 fs-5 fw-bold border-danger text-center">Right</div>
             </div>
             <div class="row seatContainer">
-                @for (int a = 0; a < Model.NumberOfSeat; a++)
+                @for (int i = 0; i < Model.NumberOfSeat; i++)
                 {
-                    int rowNumber = (a / 4) + 1;
+                    int rowNumber = (i/ 4) + 1;
                     string rowId = "Row" + rowNumber;
-                    <div class="col-3 mr-2 seatHover AboutSeat border border-dark py-3 shadow text-center" id="@rowId"> @ViewBag.SeatNumbers[a]</div>
+                    <div class="col-3 mr-2 seatHover AboutSeat border border-dark py-3 shadow text-center" id="@rowId" style="background-color: @Model.Seats[i].Status"> @Model.Seats[i].SeatNo</div>
                 }
             </div>
         </div>
