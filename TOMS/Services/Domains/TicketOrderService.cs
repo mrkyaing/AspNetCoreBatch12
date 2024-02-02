@@ -16,6 +16,15 @@ namespace TOMS.Services.Domains
             _applicationDb.SaveChanges();
         }
 
+        public void Create(List<TicketEntity> tickets)
+        {
+            foreach (TicketEntity ticket in tickets)
+            {
+                _applicationDb.Tickets.Add(ticket);
+                _applicationDb.SaveChanges();
+            }
+        }
+
         public void Delete(string Id)
         {
             var ticket = _applicationDb.Tickets.Find(Id);

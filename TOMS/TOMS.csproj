@@ -1650,4 +1650,8 @@
     <ProjectReference Include="..\TOMS.Helper\TOMS.Helper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Payment\ReceivedFrom\" />
+  </ItemGroup>
+
 </Project>

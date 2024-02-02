@@ -115,24 +115,23 @@ namespace TOMS.Controllers
         [HttpPost]
         public JsonResult Checkout(TicketViewModel selectedtickets)
         {
+            //adding the ticket infos into the session of current http request with key & values 
             SessionHelper.SetDataToSession(HttpContext.Session, "ticketInfos", selectedtickets);
             return Json(selectedtickets);
         }
-        public IActionResult Confirm()
+        [HttpGet]
+        public IActionResult OrderConfirm()
         {
             TicketViewModel tickets = SessionHelper.GetDataFromSession<TicketViewModel>(HttpContext.Session, "ticketInfos");
             ViewBag.PaymentTypeInfo=_paymentTypeService.RetrieveAll().Select(s=>new PaymentTypeViewModel 
             { 
-                Id=s.Id,PaymentType= s.PaymentType,
+                Id=s.Id,
+                PaymentType= s.PaymentType,
                 AccountName= s.AccountName,
                 AccountNumber=s.AccountNumber
             }).ToList();
             return View(tickets);
         }
-        [HttpPost]
-        public IActionResult MakePayment()
-        {
-            return View();
-        }
+       
     }
 }

@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();//for identity razor page
-builder.Services.AddSession();//for storing data AddToCart
+builder.Services.AddSession();//for storing data selected Seats Ticekt Infos
 //declare the configration
 var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(config.GetConnectionString("TOMSConnectionString")));
@@ -28,6 +28,8 @@ builder.Services.AddScoped<IRouteService, RouteService>();
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IBusLineService, BusLineService>();
 builder.Services.AddScoped<IPaymentTypeService, PaymentTypeService>();
+builder.Services.AddScoped<ITicketOrderService, TicketOrderService>();
+builder.Services.AddScoped<ITicketOrderTransactionService, TicketOrderTransactionService>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -39,11 +41,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseSession();//for storing addToCart function
+app.UseSession();//enable for session to store the selected Seats Ticekt Infos
 app.UseRouting();
 app.UseAuthentication();//enable authentication before authorization
 app.UseAuthorization();//enable authorization 
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

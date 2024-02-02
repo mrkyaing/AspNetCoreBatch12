@@ -1,0 +1,113 @@
+﻿@model PaymentConfirmViewModel
+<div>
+    <form action="/payment/MakePayment" method="post" class="row">
+        <div class="col-6">
+            <div class="row mb-2">
+                <div class="seatPlan py-3 text-center rounded-top">
+                    Your Selected Payment Type Information as Following
+                </div>
+                <div class="py-3 bg-light rounded-bottom">
+                    <input type="hidden" value="@Model.PaymentTypeId" name="PaymentTypeId" />
+                    <h5 class="col text-center">Payment Info:</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Account Type</label>
+                        <input type="text" class="form-control" value="@Model.PaymentTypeInfo.PaymentType" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Account Name</label>
+                        <input type="text" class="form-control" value="@Model.PaymentTypeInfo.AccountName" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Account Number</label>
+                        <input type="text" class="form-control" value="@Model.PaymentTypeInfo.AccountNumber" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">QR</label>
+                        <img src="~/images/payment/receivedto/kbzpay-qr-code.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="seatPlan py-3 text-center rounded-top">
+                   Passenger Information
+                </div>
+                <div class="p-5 bg-light rounded-bottom">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="Name" value="@Model.Name" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">NRC</label>
+                        <input type="text" class="form-control" name="NRC" value="@Model.NRC" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="Email" value="@Model.Email" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-control" name="Phone" value="@Model.Phone" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label> <br />
+                        <input type="text" class="form-control" name="Gender" value="@Model.Gender" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-control" name="Address">@Model.Address</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-12">
+                <div class="seatPlan py-3 text-center rounded-top fw-bold">Reserved Seat(s) Summary</div>
+                <div class="p-5 bg-light rounded-bottom">
+                    <div class="mb-3 row">
+                        <label class="col">Passenger Type :</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.Ticket.PassengerType" readonly >
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Bus Line Type:</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.Ticket.BusLineType" readonly>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">When (ကားထွတ်ချိန်):</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.Ticket.When" readonly>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Depatured Date (ခရီးစဉ် ရက်စွဲ)):</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.Ticket.TicketOrderedDate" readonly>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Unit Price (MMK) (လက်မှတ်ခ-ကျပ်):</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.Ticket.UnitPrice" readonly>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Seat Row</label>
+                        @foreach (var s in @Model.Ticket.SeatRows)
+                        {
+                            <input type="text" disabled class="border border-light col text-start bg-light p-1 text-primary overflow-auto" value="@s">
+                        }
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Seat (s)</label>
+                        @foreach (var s in @Model.Ticket.SeatsNo)
+                        {
+                            <input type="text" disabled class="border border-light col text-start bg-light p-1 text-primary overflow-auto" value="@s">
+                        }
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Number Of Ticket (s)</label>
+                        <input type="number" readonly class="border border-light col text-start bg-transparent" id="txtNumberOfTickets" value="@Model.Ticket.NumberOfTickets">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Total Price (MMK)</label>
+                        <input type="text" readonly class="border border-light col text-start bg-transparent" name="TotalAmount" value="@Model.Ticket.TotalAmount">
+                    </div>
+                    <button class="btn btn-danger checking mt-5 col-12" type="submit">Make Payment</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

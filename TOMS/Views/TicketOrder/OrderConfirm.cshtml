@@ -1,0 +1,107 @@
+﻿@model TicketViewModel
+<div>
+    <form action="/payment/PaymentConfirm" method="post" class="row">
+        <div class="col-6">
+            <div class="row mb-2">
+                <div class="seatPlan py-3 text-center rounded-top">
+                    Please Payment Type Information
+                </div>
+                <div class="py-3 bg-light rounded-bottom">
+                    <h5 class="col text-center">Payment Types :</h5>
+                    @foreach (var pt in ViewBag.PaymentTypeInfo)
+                    {
+                        <input type="radio" class="form-check-input" name="PaymentTypeId" value="@pt.Id">
+                        <b>@pt.PaymentType</b>
+                        <b>@pt.AccountName</b>
+                        <b>@pt.AccountNumber</b>
+                        <br />
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="seatPlan py-3 text-center rounded-top">
+                    Please filled Your Passenger Information
+                </div>
+                <div class="p-5 bg-light rounded-bottom">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="Name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">NRC</label>
+                        <input type="text" class="form-control" name="NRC">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="Email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-control" name="Phone">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label> <br />
+                        <input type="radio" class="form-check-input" name="Gender" value="Female" checked>Female
+                        <input type="radio" class="form-check-input" name="Gender" value="Male">Male
+                        <input type="radio" class="form-check-input" name="Gender" value="Other">Other
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-control" name="Address"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-12">
+                <div class="seatPlan py-3 text-center rounded-top fw-bold">Reserved Seat(s) Summary</div>
+                <div class="p-5 bg-light rounded-bottom">
+                    <input type="hidden" id="txtRouteId" value="@Model.RouteId" />
+                    <div class="mb-3 row">
+                        <label class="col">Passenger Type :</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.PassengerType" readonly id="txtPassengerType">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Bus Line Type:</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.BusLineType" readonly>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">When (ကားထွတ်ချိန်):</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.When" readonly>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Depatured Date (ခရီးစဉ် ရက်စွဲ)):</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.TicketOrderedDate" readonly id="TicketOrderedDate">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Unit Price (MMK) (လက်မှတ်ခ-ကျပ်):</label>
+                        <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.UnitPrice" readonly id="txtUnitPrice">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Seat Row</label>
+                        @foreach (var s in @Model.SeatRows)
+                        {
+                            <input type="text" disabled class="border border-light col text-start bg-light p-1 text-primary overflow-auto" value="@s">
+                        }
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Seat (s)</label>
+                        @foreach (var s in @Model.SeatsNo)
+                        {
+                            <input type="text" disabled class="border border-light col text-start bg-light p-1 text-primary overflow-auto" value="@s">
+                        }
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Number Of Ticket (s)</label>
+                        <input type="number" readonly class="border border-light col text-start bg-transparent" id="txtNumberOfTickets" value="@Model.NumberOfTickets">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col">Total Price (MMK)</label>
+                        <input type="text" readonly class="border border-light col text-start bg-transparent" id="txtTotalAmount" value="@Model.TotalAmount">
+                    </div>
+                    <button class="btn btn-danger checking mt-5 col-12" type="submit">Payment Confirm</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

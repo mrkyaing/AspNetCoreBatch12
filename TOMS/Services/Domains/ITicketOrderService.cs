@@ -6,6 +6,7 @@ namespace TOMS.Services.Domains
     {
         //crud process for passenger domain
         void Create(TicketEntity ticket);//create process
+        void Create(List<TicketEntity> tickets);//create process
         IList<TicketEntity> ReteriveAll();//reterice process
         void Update(TicketEntity ticket);//update process 
         TicketEntity GetById(string id);//get the recrod to called the update function

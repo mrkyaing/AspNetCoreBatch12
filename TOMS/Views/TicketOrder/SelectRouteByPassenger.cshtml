@@ -23,18 +23,18 @@
     <div class="col-5">
         <div class="seatPlan py-3 text-center rounded-top fw-bold">Trip Summary</div>
         <div class="p-5 bg-light rounded-bottom">
-             <input type="hidden" id="txtRouteId" value="@Model.RouteId" />
+            <input type="hidden" value="@Model.RouteId" id="txtRouteId" />
             <div class="mb-3 row">
                 <label class="col">Passenger Type :</label>
                 <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.PassengerType" readonly id="txtPassengerType">
             </div>
             <div class="mb-3 row">
                 <label class="col">Bus Line Type:</label>
-                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.BusLineType" readonly>
+                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.BusLineType" readonly id="txtBusLineType">
             </div>
             <div class="mb-3 row">
                 <label class="col">When (ကားထွတ်ချိန်):</label>
-                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.When" readonly>
+                <input type="text" disabled class="border border-light col text-start bg-transparent" value="@Model.When" readonly id="txtWhen">
             </div>
             <div class="mb-3 row">
                 <label class="col">Depatured Date (ခရီးစဉ် ရက်စွဲ)):</label>
@@ -70,7 +70,6 @@
     let allSelectRoles = [];
     let numberOfSelectedTickets = 0;
     $(".seatContainer").on('click', function (event) {
-        debugger;
         let clickSeat = $(event.target);
         clickSeat.toggleClass("selectedSeat AboutSeat");
         let currentValue = $(".selectSeat").val();
@@ -106,30 +105,37 @@
         }
         $(".selectSeat").val(modifiedValue);
         $("#seatRow").val(seatRow);
+        //showing the selected Seats as Number Of Ticket 
         $("#txtNumberOfTickets").val(allSelectSeats.length);
+        //showing the Total Amount = Unit Price * Qty
         $("#txtTotalAmount").val(Number($("#txtNumberOfTickets").val()) * Number($("#txtUnitPrice").val()));
     })
+   
     $(".checking").on('click', function () {
-        console.log(allSelectSeats);
+        debugger;
         var url = "/TicketOrder/Checkout";
-        var selectedticketsInfo = {};//make a json object
-        selectedticketsInfo.TicketOrderedDate = $("#dptDepaturedDate").val();//get the user's input value of order id
-        selectedticketsInfo.PassengerType = $("#txtPassengerType").val();//get the user's input value of order id
-        selectedticketsInfo.RouteId = $("#txtRouteId").val();//get the user's input value of order id
+        var selectedticketsInfo = {};//make a json select ticket info
+        selectedticketsInfo.TicketOrderedDate = $("#dptDepaturedDate").val();//get the user's input value of dptDepaturedDate
+        selectedticketsInfo.PassengerType = $("#txtPassengerType").val();//get the user's input value of txtPassengerType
+        selectedticketsInfo.RouteId = $("#txtRouteId").val();//get the hidden route id 
         selectedticketsInfo.SeatsNo = allSelectSeats;
         selectedticketsInfo.SeatRows = allSelectRoles;
         selectedticketsInfo.Status = "Reserved";
-        selectedticketsInfo.NumberOfTickets = $("#txtNumberOfTickets").val();//get the user's input value of order id
-        selectedticketsInfo.TotalAmount = $("#txtTotalAmount").val();//get the user's input value of order id
+        selectedticketsInfo.BusLineType =$("#txtBusLineType").val();
+        selectedticketsInfo.UnitPrice = $("#txtUnitPrice").val();
+        selectedticketsInfo.When = $("#txtWhen").val();
+        selectedticketsInfo.NumberOfTickets = $("#txtNumberOfTickets").val();
+        selectedticketsInfo.TotalAmount = $("#txtTotalAmount").val();
         $.ajax({
             type: 'POST',
             url: url,
             data: selectedticketsInfo,
             success: function (response) {
                 var data = JSON.stringify(response);
-                var redirecturl = "/TicketOrder/Confirm";
-                localStorage.setItem('myData', response);
-                window.location = redirecturl;
+                if(data!=null){
+                    var redirecturl = "/TicketOrder/OrderConfirm";
+                    window.location = redirecturl;
+                }
             },
             failure: function (error) {
                 console.log(error);

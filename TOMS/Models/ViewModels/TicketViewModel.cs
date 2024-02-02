@@ -2,8 +2,11 @@
 {
     public class TicketViewModel
     {
-        public DateTime TicketOrderedDate { get; set; }
+        public DateTime TicketOrderedDate { get; set; }//same as DepaturedDate 
         public string PassengerType { get; set; }
+        public string BusLineType { get; set; }
+        public TimeSpan When { get; set; }
+        public decimal UnitPrice { get; set; }
         public string RouteId { get; set; }
         public string[] SeatsNo { get; set; }
         public string[] SeatRows { get; set; }
