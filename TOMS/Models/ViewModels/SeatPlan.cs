@@ -2,13 +2,13 @@
 {
     public class SeatPlan
     {
-        public SeatPlan(string seatPlan)
+        public SeatPlan(string seatNo)
         {
-            this.SeatNo = seatPlan;
+            this.SeatNo = seatNo;
         }
-        public SeatPlan(string seatPlan,string status)
+        public SeatPlan(string seatNo, string status)
         {
-            this.SeatNo = seatPlan;
+            this.SeatNo = seatNo;
             this.Status = status;
         }
         public string SeatNo { get; set; }

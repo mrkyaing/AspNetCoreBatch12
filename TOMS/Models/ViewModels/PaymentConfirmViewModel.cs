@@ -13,5 +13,7 @@
         public string? Address { get; set; }
         //for ticket info 
         public TicketViewModel Ticket { get; set; }
+        //for showing TxNo to the UI
+        public string TxNo { get; set; }
     }
 }

@@ -1,1 +1,50 @@
-﻿<h1>Ticket voucher Detail List</h1>
+﻿@model PaymentConfirmViewModel
+<div class="row d-flex justify-content-center align-items-center">
+    <div class="col-6 ticketBg rounded">
+        <div class="row p-3">
+            <div class="col-8">
+            <table class="text-light ticketTable col-12">
+                <tr>
+                    <td>Passenger Name:</td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <td>TX No:</td>
+                    <td>@Model.TxNo</td>
+                </tr>
+                <tr>
+                    <td>Number of Tickets:</td>
+                    <td>@Model.Ticket.NumberOfTickets</td>
+                </tr>
+                <tr>
+                    <td>Seat (s):</td>
+                    <td>
+                        <div>
+                                @foreach (var s in @Model.Ticket.SeatsNo)
+                                {
+                                <input type="text" disabled class="border border-light col text-start bg-light p-1 text-primary overflow-auto" value="@s">
+                                }
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Unit Price:</td>
+                    <td>@Model.Ticket.UnitPrice</td>
+                </tr>
+                <tr>
+                    <td>Total Price:</td>
+                    <td>@Model.Ticket.TotalAmount</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-4 d-flex justify-content-center align-items-center border border-dark">
+            <img src="~/Images/BusLine/busTicketLogo.png" style="width:100%" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success text-center text-light"> <i class="fa-regular fa-circle-down"></i> Download as PDF</button>
+</div>
+</div>

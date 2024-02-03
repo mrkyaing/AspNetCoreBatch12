@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TOMS.Models.DataModels;
 using TOMS.Models.ViewModels;
 using TOMS.Services.Domains;
@@ -25,13 +26,13 @@ namespace TOMS.Controllers
         {
             TicketViewModel ticket= SessionHelper.GetDataFromSession<TicketViewModel>(HttpContext.Session, "ticketInfos");
             var paymentType = _paymentTypeService.GetById(paymentConfirmViewModel.PaymentTypeId);
-            PaymentTypeViewModel paymentTypeViewModel = new PaymentTypeViewModel()
+            var  paymentTypeInfo = new PaymentTypeViewModel()
             {
                 AccountName=paymentType.AccountName,
                 AccountNumber=paymentType.AccountNumber,
                 PaymentType=paymentType.PaymentType
             };
-            paymentConfirmViewModel.PaymentTypeInfo = paymentTypeViewModel ;
+            paymentConfirmViewModel.PaymentTypeInfo = paymentTypeInfo;
             paymentConfirmViewModel.Ticket = ticket;
             return View("MakePayment",paymentConfirmViewModel);
         }
@@ -56,7 +57,7 @@ namespace TOMS.Controllers
             var ticketOrderTransaction = new TicketOrderTransactionEntity()
             {
                 Id = Guid.NewGuid().ToString(),
-                TnxNo = DateTime.Now.ToString("yyyyMMddHHSS"),
+                TnxNo = DateTime.Now.ToString("yyyyMMddHHmmss"),
                 Status = "Unpaid",
                 PaymentTypeId = paymentConfirmViewModel.PaymentTypeId,
                 PassengerId = passenger.Id,
@@ -89,9 +90,13 @@ namespace TOMS.Controllers
             _ticketOrderTransactionService.Create(ticketOrderTransaction);
             //saving the ticketOrders info to the data base 
             _ticketOrderService.Create(ticketOrders);
+           
+            //passing the txno,Number of Seats ,Seat(s) No to the ui
+            paymentConfirmViewModel.TxNo = ticketOrderTransaction.TnxNo;
+            paymentConfirmViewModel.Ticket = tickets;
             //clear the ticket infos session
-            SessionHelper.ClearSession(HttpContext.Session);
-            return RedirectToAction("TicketVouchorHistoryList");
+            SessionHelper.ClearSession(HttpContext.Session);       
+            return View("TicketVouchorHistoryList",paymentConfirmViewModel);
         }
        public IActionResult TicketVouchorHistoryList()
         {

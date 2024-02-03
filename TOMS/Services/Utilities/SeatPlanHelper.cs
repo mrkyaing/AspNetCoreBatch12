@@ -17,7 +17,7 @@ namespace TOMS.Services.Utilities
                 new SeatPlan("H1"), new SeatPlan("H2"),
                 new SeatPlan("I1"), new SeatPlan("I2"),
                 new SeatPlan("J1"), new SeatPlan("J2"),
-                  new SeatPlan("K1") ,new SeatPlan("K2"),
+                new SeatPlan("K1") ,new SeatPlan("K2"),
                 new SeatPlan("L1"),new SeatPlan("L2"),
                 new SeatPlan("M1") , new SeatPlan("M2"),
                 new SeatPlan("N1") , new SeatPlan("N2"),

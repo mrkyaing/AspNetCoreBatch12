@@ -12,14 +12,16 @@ namespace TOMS.Controllers
         private readonly IBusLineService _busLineService;
         private readonly IPaymentTypeService _paymentTypeService;
         private readonly ITicketOrderService _ticketOrderService;
+        private readonly ITicketOrderTransactionService _ticketOrderTransactionService;
 
-        public TicketOrderController(ICityService cityService,IRouteService routeService , IBusLineService busLineService,IPaymentTypeService paymentTypeService,ITicketOrderService ticketOrderService)
+        public TicketOrderController(ICityService cityService,IRouteService routeService , IBusLineService busLineService,IPaymentTypeService paymentTypeService,ITicketOrderService ticketOrderService,ITicketOrderTransactionService ticketOrderTransactionService)
         {
             _cityService = cityService;
             _routeService = routeService;
             _busLineService = busLineService;
             _paymentTypeService = paymentTypeService;
             _ticketOrderService = ticketOrderService;
+            _ticketOrderTransactionService = ticketOrderTransactionService;
         }
         public IActionResult SearchRoute()
         {
@@ -121,7 +123,7 @@ namespace TOMS.Controllers
                 UnitPrice = route.UnitPrice,
                 RouteId = routeId,
                 NumberOfSeat =busLine.NumberOfSeat,//for define the seat plans
-                Seats = defaultSeats
+                Seats = defaultSeats//for binding seats status
             };
             return View(seatPan);
         }

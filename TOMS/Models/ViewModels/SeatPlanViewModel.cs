@@ -11,6 +11,7 @@
         public string RouteId { get; set; }
         public int NumberOfSeat { get; set; }
         public decimal UnitPrice { get; set; }
+        //for available & non-available condition control 
         public List<SeatPlan>   Seats { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model List<OrderTransactionViewModel>
+<h1>Ticket Transaction Information</h1>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success" role="alert">@TempData["info"]</div>
+}
+<table class="table table-striped-columns table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">TxtNo</th>
+            <th scope="col">Status</th>
+            <th scope="col">Payment</th>
+            <th scope="col">PassengerName</th>
+            <th scope="col">NumberOfTickets</th>
+            <th scope="col">TotalAmount</th>
+            <th scope="col">Remark</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.TnxNo</td>
+                <td>@item.Status</td>
+                <td>@item.PaymentMethodId</td>
+                <td>@item.PassengerId</td>
+                <td>@item.NumberOfTickets</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.Remark</td>
+                <td class="row col-12">
+                    <a class="btn btn-success col-6" href="/TicketOrder/edit?id=@item.PaymentMethodId"><i class="fa-solid fa-pen-to-square"></i>Check Ticket</a>
+                    <a class="btn btn-danger col-6" href="/TicketOrder/delete?id=@item.PaymentMethodId" onclick="return confirm('Are you sure to delete this record?');" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Delete</a>
+                </td>
+            </tr>
+            index++;
+        }
+
+    </tbody>
+</table>
