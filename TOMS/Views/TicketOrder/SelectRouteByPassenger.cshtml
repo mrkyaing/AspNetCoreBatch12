@@ -15,7 +15,7 @@
                 {
                     int rowNumber = (i/ 4) + 1;
                     string rowId = "Row" + rowNumber;
-                    <div class="col-3 mr-2 seatHover AboutSeat border border-dark py-3 shadow text-center" id="@rowId" style="background-color: @Model.Seats[i].Status"> @Model.Seats[i].SeatNo</div>
+                    <div class="col-3 mr-2 seatHover AboutSeat border border-dark py-3 shadow text-center @Model.Seats[i].Status" id="@rowId" style="background-color:@Model.Seats[i].Status;"> @Model.Seats[i].SeatNo</div>
                 }
             </div>
         </div>
@@ -71,6 +71,10 @@
     let numberOfSelectedTickets = 0;
     $(".seatContainer").on('click', function (event) {
         let clickSeat = $(event.target);
+        if (clickSeat.hasClass("red")) {
+            alert("This seat number is already ordered.Please choose other seat(s).Thanks!!");
+            return;
+        }
         clickSeat.toggleClass("selectedSeat AboutSeat");
         let currentValue = $(".selectSeat").val();
         let currentRowValue = $("#seatRow").val();

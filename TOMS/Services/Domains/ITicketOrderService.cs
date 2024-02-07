@@ -9,7 +9,8 @@ namespace TOMS.Services.Domains
         void Create(TicketEntity ticket);//create process
         void Create(List<TicketEntity> tickets);//create process
         IList<TicketEntity> ReteriveAll();//reterice process
-        //for available and non-available ticekts checking by 
+
+        //for available and non-available ticekts checking
         IList<SeatPlan> ReteriveByTicketOrderedDateAndRouteId(DateTime ticketOrderedDate,string routeId);//reterice process
         void Update(TicketEntity ticket);//update process 
         TicketEntity GetById(string id);//get the recrod to called the update function
